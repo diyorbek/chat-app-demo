@@ -1,27 +1,19 @@
-import {
-  AppBar,
-  Avatar,
-  Box,
-  Button,
-  Container,
-  Divider,
-  List,
-  ListItem,
-  ListItemAvatar,
-  ListItemButton,
-  ListItemText,
-  Toolbar,
-  Typography,
-  colors,
-} from '@mui/material';
+import { AppBar, Box, Button, Container, Toolbar } from '@mui/material';
 import { ChatMessage } from './components/ChatMessage';
 import { ChatContainer } from './components/ChatContainer';
+import { ChatList } from './components/ChatList';
+import { ChatListItem } from './components/ChatListItem';
 
 function App() {
   return (
     <Container>
       <Box display="flex" flexDirection="column" height="100vh">
-        <AppBar position="relative" color="transparent">
+        <AppBar
+          position="relative"
+          color="transparent"
+          variant="outlined"
+          elevation={0}
+        >
           <Toolbar>
             <Box display="flex" gap={2}>
               <Button variant="outlined" color="info">
@@ -39,20 +31,12 @@ function App() {
 
         <Box display="flex" height="100%">
           <Box width="360px">
-            <List>
-              <ListItem alignItems="flex-start" disablePadding>
-                <ListItemButton>
-                  <ListItemAvatar>
-                    <Avatar
-                      alt="Remy Sharp"
-                      src="/static/images/avatar/1.jpg"
-                    />
-                  </ListItemAvatar>
-                  <ListItemText primary="Brunch this weekend?" />
-                </ListItemButton>
-              </ListItem>
-              <Divider component="li" />
-            </List>
+            <ChatList>
+              <ChatListItem label="John Doe" />
+              <ChatListItem label="John Doe" isHighlighted />
+              <ChatListItem label="John Doe" isActive />
+              <ChatListItem label="John Doe" isLast />
+            </ChatList>
           </Box>
 
           <Box flex={1} bgcolor="grey">
