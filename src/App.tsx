@@ -14,6 +14,8 @@ import {
   Typography,
   colors,
 } from '@mui/material';
+import { ChatMessage } from './components/ChatMessage';
+import { ChatContainer } from './components/ChatContainer';
 
 function App() {
   return (
@@ -53,86 +55,15 @@ function App() {
             </List>
           </Box>
 
-          <Box flex={1} bgcolor="grey" position="relative">
-            <Box
-              display="flex"
-              flexDirection="column-reverse"
-              position="absolute"
-              width="100%"
-              height="100%"
-              overflow="auto"
-              padding={2}
-            >
-              <Box display="flex" flexDirection="column" gap={1}>
-                {[...new Array(10)].map((_, i) => (
-                  <Box
-                    key={i}
-                    display="inline-flex"
-                    flexDirection="column"
-                    borderRadius={4}
-                    padding={1}
-                    maxWidth={500}
-                    bgcolor={colors.lightBlue[500]}
-                    marginRight={2}
-                  >
-                    <Typography>
-                      1 Hello! sdfds dsf sd fs dfdsfsdfsdffsdfsdfs sdsfsfsd
-                      sdfsdfdsfdfg Hello! sdfds dsf sd fs dfdsfsdfsdffsdfsdfs
-                      sdsfsfsd sdfsdfdsfdfg
-                    </Typography>
-                    <Typography
-                      style={{ alignSelf: 'flex-end' }}
-                      variant="caption"
-                    >
-                      12:03
-                    </Typography>
-                  </Box>
-                ))}
-                <Box
-                  display="inline-flex"
-                  flexDirection="column"
-                  alignSelf="flex-end"
-                  borderRadius={4}
-                  padding={1}
-                  maxWidth={500}
-                  bgcolor={colors.lightGreen[500]}
-                  marginLeft={2}
-                >
-                  <Typography>
-                    2 Hello! sdfds dsf sd fs dfdsfsdfsdffsdfsdfs sdsfsfsd
-                    sdfsdfdsfdfg Hello! sdfds dsf sd fs dfdsfsdfsdffsdfsdfs
-                    sdsfsfsd sdfsdfdsfdfg
-                  </Typography>
-                  <Typography
-                    style={{ alignSelf: 'flex-end' }}
-                    variant="caption"
-                  >
-                    12:03
-                  </Typography>
-                </Box>
-                <Box
-                  display="inline-flex"
-                  flexDirection="column"
-                  borderRadius={4}
-                  padding={1}
-                  maxWidth={500}
-                  bgcolor={colors.lightBlue[500]}
-                  marginRight={2}
-                >
-                  <Typography>
-                    3 Hello! sdfds dsf sd fs dfdsfsdfsdffsdfsdfs sdsfsfsd
-                    sdfsdfdsfdfg Hello! sdfds dsf sd fs dfdsfsdfsdffsdfsdfs
-                    sdsfsfsd sdfsdfdsfdfg
-                  </Typography>
-                  <Typography
-                    style={{ alignSelf: 'flex-end' }}
-                    variant="caption"
-                  >
-                    12:03
-                  </Typography>
-                </Box>
-              </Box>
-            </Box>
+          <Box flex={1} bgcolor="grey">
+            <ChatContainer>
+              <ChatMessage content="Hello! sdfds" timestamp="" variant="sent" />
+              <ChatMessage
+                content="Hello! sdfds"
+                timestamp="2023-07-18T06:56:43.220Z"
+                variant="received"
+              />
+            </ChatContainer>
           </Box>
         </Box>
       </Box>
