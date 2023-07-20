@@ -1,13 +1,13 @@
-import { AppBar, Box, Button, Container, Toolbar } from '@mui/material';
+import { Box, Container } from '@mui/material';
 import { ChatMessage } from './components/ChatMessage';
 import { ChatContainer } from './components/ChatContainer';
 import { ChatList } from './components/ChatList';
 import { ChatListItem } from './components/ChatListItem';
-import { fileController } from './FileController';
-import { useChatControllerContext } from './contexts/ChatControllerContext';
-import { chatController } from './ChatController';
 
-const userId = 12345;
+import { useChatControllerContext } from './contexts/ChatControllerContext';
+import { Header } from './components/Header';
+
+const userId = 12345; // this should be retrieved from backend
 
 function App() {
   const { archivedChats, currentChat, setCurrentChat } =
@@ -16,46 +16,7 @@ function App() {
   return (
     <Container>
       <Box display="flex" flexDirection="column" height="100vh">
-        <AppBar
-          position="relative"
-          color="transparent"
-          variant="outlined"
-          elevation={0}
-        >
-          <Toolbar>
-            <Box display="flex" gap={2}>
-              <Button
-                variant="outlined"
-                color="info"
-                onClick={() => {
-                  void fileController.loadArchiveFromFile().then((content) => {
-                    if (content) chatController.loadArchivedChats(content);
-                  });
-                }}
-              >
-                Import
-              </Button>
-              <Button
-                variant="outlined"
-                color="info"
-                disabled={!archivedChats.length}
-                onClick={() => {
-                  void fileController.saveArchiveToFile(archivedChats);
-                }}
-              >
-                Export
-              </Button>
-              <Button
-                variant="outlined"
-                color="info"
-                disabled={!archivedChats.length}
-                onClick={() => chatController.flushArchives()}
-              >
-                Clear
-              </Button>
-            </Box>
-          </Toolbar>
-        </AppBar>
+        <Header />
 
         <Box display="flex" overflow="auto" height="100%">
           <Box width="360px" overflow="auto">
@@ -71,7 +32,7 @@ function App() {
           </Box>
 
           <Box flex={1} bgcolor="grey">
-            <ChatContainer key={currentChat?.user.id || '1'}>
+            <ChatContainer key={currentChat?.user.id}>
               {currentChat?.messages.map(
                 ({ content, timestamp, user_id }, i) => (
                   <ChatMessage

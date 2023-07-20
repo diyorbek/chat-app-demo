@@ -1,4 +1,3 @@
-import { Data } from './schemas';
 import { openFilePicker, readFileAsText, saveToFile } from './utils/fileUtils';
 
 class FileController {

@@ -20,6 +20,7 @@ const ChatControllerContext = createContext<ChatControllerContext>({
   setCurrentChat: () => void 0,
 });
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useChatControllerContext() {
   return useContext(ChatControllerContext);
 }
