@@ -1,5 +1,5 @@
 import { Box, colors, Typography } from '@mui/material';
-import { extractTime } from '../utils';
+import { extractTime } from '../utils/misc';
 
 interface Props {
   content: string;

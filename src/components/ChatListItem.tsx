@@ -14,6 +14,7 @@ interface Props {
   isActive?: boolean;
   isHighlighted?: boolean;
   isLast?: boolean;
+  onClick?: () => void;
 }
 
 export function ChatListItem({
@@ -22,6 +23,7 @@ export function ChatListItem({
   isActive,
   isHighlighted,
   isLast,
+  onClick,
 }: Props) {
   return (
     <>
@@ -40,7 +42,7 @@ export function ChatListItem({
           )
         }
       >
-        <ListItemButton selected={isActive}>
+        <ListItemButton selected={isActive} onClick={onClick}>
           <ListItemAvatar>
             <Avatar alt={label} src={avatarUrl} />
           </ListItemAvatar>
