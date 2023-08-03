@@ -1,5 +1,5 @@
-import { Chat, archivedChatsSchema } from './schemas';
-import { safeParseJSON } from './utils/misc';
+import { Chat, archivedChatsSchema } from '../schemas';
+import { safeParseJSON } from '../utils/misc';
 
 export type ChatControllerSubscriber = () => void;
 
@@ -30,7 +30,7 @@ class ChatController {
 
   flushArchives() {
     this.#setArchivedChats([]);
-    this.setCurrentChat(undefined);
+    this.#currentChat = undefined;
   }
 
   getArchivedChats() {
