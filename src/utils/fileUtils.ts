@@ -1,4 +1,4 @@
-import { createHiddenInput } from './misc';
+import { openFilePickerWithInput } from './misc';
 
 export function readFileAsText(file: File): Promise<string | null | undefined> {
   return new Promise((resolve, reject) => {
@@ -26,25 +26,6 @@ export async function openFilePicker(accept: string): Promise<File> {
 export async function saveToFile(filename: string, data: string) {
   if ('showSaveFilePicker' in window) return saveFilePicker(filename, data);
   return downloadAsFile(filename, data);
-}
-
-function openFilePickerWithInput(accept: string): Promise<File> {
-  const input = createHiddenInput();
-  input.type = 'file';
-  input.accept = accept;
-
-  document.body.appendChild(input);
-
-  return new Promise((resolve, reject) => {
-    input.onchange = () => {
-      if (input.files) resolve(input.files[0]);
-      else reject();
-
-      document.body.removeChild(input);
-    };
-
-    input.click();
-  });
 }
 
 function downloadAsFile(filename: string, data: string) {

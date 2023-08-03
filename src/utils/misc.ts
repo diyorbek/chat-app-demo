@@ -13,6 +13,26 @@ export function createHiddenInput() {
   return input;
 }
 
+// We have to export it for testing purposes
+export function openFilePickerWithInput(accept: string): Promise<File> {
+  const input = createHiddenInput();
+  input.type = 'file';
+  input.accept = accept;
+
+  document.body.appendChild(input);
+
+  return new Promise((resolve, reject) => {
+    input.onchange = () => {
+      if (input.files) resolve(input.files[0]);
+      else reject();
+
+      document.body.removeChild(input);
+    };
+
+    input.click();
+  });
+}
+
 export function safeParseJSON<T>(data: string): T | null {
   try {
     return JSON.parse(data) as T;

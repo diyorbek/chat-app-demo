@@ -44,6 +44,7 @@ class ChatController {
   setCurrentChat(chat: Chat | undefined) {
     if (chat === undefined || this.#archivedChats.includes(chat)) {
       this.#currentChat = chat;
+      this.#emitChange();
     }
   }
 

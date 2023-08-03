@@ -28,6 +28,7 @@ export function ChatListItem({
   return (
     <>
       <ListItem
+        aria-label={`item ${label}`}
         alignItems="flex-start"
         disablePadding
         secondaryAction={
