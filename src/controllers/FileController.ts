@@ -1,4 +1,4 @@
-import { openFilePicker, readFileAsText, saveToFile } from './utils/fileUtils';
+import { openFilePicker, readFileAsText, saveToFile } from '../utils/fileUtils';
 
 class FileController {
   #instance: FileController | null = null;

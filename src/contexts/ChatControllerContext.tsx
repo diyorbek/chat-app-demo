@@ -6,7 +6,7 @@ import {
   useState,
 } from 'react';
 import { Chat } from '../schemas';
-import { chatController } from '../ChatController';
+import { chatController } from '../controllers/ChatController';
 
 interface ChatControllerContext {
   archivedChats: readonly Chat[];
