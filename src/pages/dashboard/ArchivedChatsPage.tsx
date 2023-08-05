@@ -9,14 +9,15 @@ import { ChatList } from '../../components/ChatList';
 import { ChatListItem } from '../../components/ChatListItem';
 import { useChatControllerContext } from '../../contexts/ChatControllerContext';
 import { chatController } from '../../controllers/ChatController';
-
-const userId = 12345; // this should be retrieved from backend
+import { useWhoIam } from '../../data/profile';
 
 export function ArchivedChatsPage() {
   const { currentArchivedChat: currentChat } = useChatControllerContext();
   const { archivedChats, setCurrentArchivedChat } = useChatControllerContext();
   const navigate = useNavigate();
   const routeMatch = useMatch('/archived/:id');
+  const { data } = useWhoIam();
+  const userId = data?.id;
 
   useEffect(() => {
     if (

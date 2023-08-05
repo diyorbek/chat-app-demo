@@ -5,8 +5,7 @@ import { useFetch } from './api';
 
 export interface User {
   id: number;
-  first_name: string;
-  last_name: string;
+  name: string;
   avatar_url: string;
   email: string;
 }

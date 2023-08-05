@@ -6,12 +6,13 @@ import { useNavigate } from 'react-router-dom';
 import { ChatList } from '../../components/ChatList';
 import { ChatListItem } from '../../components/ChatListItem';
 import { useChatControllerContext } from '../../contexts/ChatControllerContext';
-
-const userId = 12345; // this should be retrieved from backend
+import { useWhoIam } from '../../data/profile';
 
 export function ActiveChatsPage() {
   const { currentActiveChat, activeChats } = useChatControllerContext();
   const navigate = useNavigate();
+  const { data } = useWhoIam();
+  const userId = data?.id;
 
   return (
     <Box display="flex" overflow="auto" height="100%">
