@@ -5,19 +5,27 @@ import {
   useEffect,
   useState,
 } from 'react';
-import { Chat } from '../schemas';
 import { chatController } from '../controllers/ChatController';
+import { Chat } from '../schemas';
 
 interface ChatControllerContext {
+  activeChats: readonly Chat[];
+  currentActiveChat: Chat | undefined;
+  setCurrentActiveChat: (chat: Chat) => void;
+
   archivedChats: readonly Chat[];
-  currentChat: Chat | undefined;
-  setCurrentChat: (chat: Chat) => void;
+  currentArchivedChat: Chat | undefined;
+  setCurrentArchivedChat: (chat: Chat) => void;
 }
 
 const ChatControllerContext = createContext<ChatControllerContext>({
+  activeChats: [],
+  currentActiveChat: undefined,
+  setCurrentActiveChat: () => void 0,
+
   archivedChats: [],
-  currentChat: undefined,
-  setCurrentChat: () => void 0,
+  currentArchivedChat: undefined,
+  setCurrentArchivedChat: () => void 0,
 });
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -30,17 +38,22 @@ export function ChatControllerContextProvider({
 }: {
   children: ReactNode;
 }) {
-  const [currentChat, setCurrentChat] = useState<Chat>();
+  const [activeChats, setActiveChats] = useState<readonly Chat[]>([]);
+  const [currentActiveChat, setCurrentActiveChat] = useState<Chat>();
+  const [currentArchivedChat, setCurrentArchivedChat] = useState<Chat>();
   const [archivedChats, setArchivedChats] = useState<readonly Chat[]>([]);
 
   useEffect(() => {
     chatController.subscribe(() => {
+      setActiveChats(chatController.getActiveChats());
+      setCurrentActiveChat(chatController.getCurrentActiveChat());
+
       setArchivedChats(chatController.getArchivedChats());
-      setCurrentChat(chatController.getCurrentChat());
+      setCurrentArchivedChat(chatController.getCurrentArchivedChat());
     });
 
     try {
-      chatController.restoreArchivedChats();
+      chatController.restoreChats();
     } catch (error) {
       console.log(error);
     }
@@ -48,7 +61,15 @@ export function ChatControllerContextProvider({
 
   return (
     <ChatControllerContext.Provider
-      value={{ archivedChats, currentChat, setCurrentChat }}
+      value={{
+        activeChats,
+        currentActiveChat,
+        setCurrentActiveChat,
+
+        archivedChats,
+        currentArchivedChat,
+        setCurrentArchivedChat,
+      }}
     >
       {children}
     </ChatControllerContext.Provider>

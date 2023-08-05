@@ -43,7 +43,7 @@ describe('`ChatController` behavior', () => {
 
     // Update data in `chatController` to trigger subscribers
     const selectedChat = chatController.getArchivedChats()[0];
-    chatController.setCurrentChat(selectedChat);
+    chatController.setArchivedCurrentChat(selectedChat);
 
     expect(subscriber1).toBeCalledTimes(1);
     expect(subscriber2).toBeCalledTimes(1);

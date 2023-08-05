@@ -1,9 +1,9 @@
-import { AppBar, Toolbar, Box, Button } from '@mui/material';
+import { AppBar, Box, Button, Toolbar } from '@mui/material';
 import { useChatControllerContext } from '../contexts/ChatControllerContext';
 import { chatController } from '../controllers/ChatController';
 import { fileController } from '../controllers/FileController';
 
-export function Header() {
+export function ArchiveActions() {
   const { archivedChats } = useChatControllerContext();
 
   const handleImport = () => {
