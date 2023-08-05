@@ -1,4 +1,5 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { LoginPage } from './pages/LoginPage';
 import { NotFound } from './pages/NotFound';
 import { DashboardPage } from './pages/dashboard/DashboardPage';
 
@@ -6,7 +7,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/login" element={<div>sdsd</div>} />
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/active/*" element={<DashboardPage chatType="active" />} />
         <Route
           path="/archived/*"
