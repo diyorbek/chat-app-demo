@@ -40,7 +40,7 @@ export function LoginPage() {
   });
 
   return (
-    <form onSubmit={formik.handleSubmit}>
+    <form onSubmit={formik.handleSubmit} id="login-form">
       <Box
         maxWidth="300px"
         margin="auto"

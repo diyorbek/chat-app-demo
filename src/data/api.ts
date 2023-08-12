@@ -2,7 +2,7 @@ import ky, { Options } from 'ky';
 
 import { useQuery } from 'react-query';
 
-export const ROOT_URL = 'https://example.com/';
+export const ROOT_URL = 'http://localhost:5173';
 
 export const api = ky.extend({
   prefixUrl: ROOT_URL,
