@@ -1,7 +1,7 @@
 import { Options } from 'ky';
 import { useMemo } from 'react';
 import { useAuthToken } from '../contexts/AuthContext';
-import { useFetch } from './api';
+import { useFetch } from './API';
 
 export interface User {
   id: number;

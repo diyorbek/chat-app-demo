@@ -7,9 +7,9 @@ describe('Login page', () => {
 
     cy.visit('http://localhost:5173/login');
 
-    cy.get('input[name="email"]').type('diyorbek@google.com');
-    cy.get('input[name="password"]').type('12345');
-    cy.get('button').click();
+    cy.findByLabelText('Email').type('diyorbek@google.com');
+    cy.findByLabelText('Password').type('12345');
+    cy.findByRole('button', { name: 'Sign In' }).click();
 
     cy.wait('@loginRequest');
 
@@ -17,7 +17,7 @@ describe('Login page', () => {
   });
 
   it('should show validation errors', () => {
-    const requestHandler: Parameters<typeof cy.intercept>[2] = (req) => {
+    const requestHandler: RequestHandler = (req) => {
       req.reply({ token: '1234' });
     };
     const requestHandlerSpy = cy
@@ -28,11 +28,15 @@ describe('Login page', () => {
 
     cy.visit('http://localhost:5173/login');
 
-    cy.findByText('let').should('exist');
+    cy.findByLabelText('login form').within(() => {
+      cy.findByRole('button').click();
 
-    cy.get('button').click();
-    cy.get('@loginRequestSpy').should('not.have.been.called');
-    cy.get(`#\\:r1\\:-helper-text`).should('have.text', 'Email is required');
-    cy.get(`#\\:r3\\:-helper-text`).should('have.text', 'Password is required');
+      cy.get('@loginRequestSpy').should('not.have.been.called');
+
+      cy.findByText('Email is required').should('exist');
+      cy.findByText('Password is required').should('exist');
+    });
   });
 });
+
+type RequestHandler = Parameters<typeof cy.intercept>[2];

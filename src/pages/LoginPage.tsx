@@ -40,7 +40,11 @@ export function LoginPage() {
   });
 
   return (
-    <form onSubmit={formik.handleSubmit} id="login-form">
+    <form
+      onSubmit={formik.handleSubmit}
+      id="login-form"
+      aria-label="login form"
+    >
       <Box
         maxWidth="300px"
         margin="auto"

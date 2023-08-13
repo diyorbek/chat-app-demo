@@ -1,4 +1,4 @@
-import { api } from './api';
+import { API } from './API';
 
 export function getAuthToken() {
   return localStorage.getItem('auth_token');
@@ -14,7 +14,7 @@ interface SignInDetails {
 }
 
 export async function login(values: SignInDetails): Promise<{ token: string }> {
-  const result = await api.post('api/auth/sign-in/', {
+  const result = await API.post('api/auth/sign-in/', {
     json: values,
   });
 

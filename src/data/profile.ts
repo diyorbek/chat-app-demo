@@ -1,7 +1,7 @@
 import { Options } from 'ky';
 import { useMemo } from 'react';
 import { useAuthToken } from '../contexts/AuthContext';
-import { useFetch } from './api';
+import { useFetch } from './API';
 
 export interface User {
   id: number;
@@ -10,7 +10,7 @@ export interface User {
   email: string;
 }
 
-export function useWhoIam() {
+export function useWhoIAm() {
   const { token } = useAuthToken();
   const options = useMemo(() => {
     const ops: Options = {};

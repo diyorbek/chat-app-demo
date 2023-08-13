@@ -6,12 +6,12 @@ import { useNavigate } from 'react-router-dom';
 import { ChatList } from '../../components/ChatList';
 import { ChatListItem } from '../../components/ChatListItem';
 import { useChatControllerContext } from '../../contexts/ChatControllerContext';
-import { useWhoIam } from '../../data/profile';
+import { useWhoIAm } from '../../data/profile';
 
 export function ActiveChatsPage() {
   const { currentActiveChat, activeChats } = useChatControllerContext();
   const navigate = useNavigate();
-  const { data } = useWhoIam();
+  const { data } = useWhoIAm();
   const userId = data?.id;
 
   return (
