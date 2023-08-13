@@ -8,7 +8,7 @@
     "build": "vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "jest": "jest --watchAll",
+    "jest": "jest",
     "e2e:open": "cypress open",
     "e2e": "cypress run"
   },
