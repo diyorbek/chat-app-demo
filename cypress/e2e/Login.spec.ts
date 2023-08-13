@@ -1,11 +1,11 @@
 describe('Login page', () => {
   it('should successfully login', () => {
-    cy.intercept('http://localhost:5173/api/auth/sign-in/', {
+    cy.intercept('**/api/auth/sign-in/', {
       token: '1234',
     }).as('loginRequest');
-    cy.intercept('http://localhost:5173/api/auth/who-am-i/', {}).as('whoami');
+    cy.intercept('**/api/auth/who-am-i/', {}).as('whoami');
 
-    cy.visit('http://localhost:5173/login');
+    cy.visit('/login');
 
     cy.findByLabelText('Email').type('diyorbek@google.com');
     cy.findByLabelText('Password').type('12345');
@@ -24,9 +24,9 @@ describe('Login page', () => {
       .spy(requestHandler as () => void)
       .as('loginRequestSpy');
 
-    cy.intercept('http://localhost:5173/api/auth/sign-in/', requestHandlerSpy);
+    cy.intercept('**/api/auth/sign-in/', requestHandlerSpy);
 
-    cy.visit('http://localhost:5173/login');
+    cy.visit('/login');
 
     cy.findByLabelText('login form').within(() => {
       cy.findByRole('button').click();
