@@ -1,0 +1,34 @@
+name: Build
+
+on:
+  pull_request:
+    branches:
+      - main
+      - staging
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 20.x
+
+      - run: yarn install
+      - run: yarn lint
+      - run: yarn jest
+
+  build-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 20.x
+
+      - name: Build
+        run: yarn install && yarn build
+
