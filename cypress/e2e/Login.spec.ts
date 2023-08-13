@@ -5,7 +5,7 @@ describe('Login page', () => {
     }).as('loginRequest');
     cy.intercept('**/api/auth/who-am-i/', {}).as('whoami');
 
-    cy.visit('/login');
+    cy.visit('/');
 
     cy.findByLabelText('Email').type('diyorbek@google.com');
     cy.findByLabelText('Password').type('12345');
@@ -26,7 +26,7 @@ describe('Login page', () => {
 
     cy.intercept('**/api/auth/sign-in/', requestHandlerSpy);
 
-    cy.visit('/login');
+    cy.visit('/');
 
     cy.findByLabelText('login form').within(() => {
       cy.findByRole('button').click();
