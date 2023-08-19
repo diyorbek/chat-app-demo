@@ -31,6 +31,13 @@ jobs:
         with:
           node-version: 20.x
 
+      - name: Create .env
+        run: | 
+          touch .env
+          echo VITE_APP_MODE=production >> .env
+          echo VITE_PRODUCTION_API_URL=https://example.com >> .env
+
+
       - name: Build
         run: yarn install && yarn build
 
