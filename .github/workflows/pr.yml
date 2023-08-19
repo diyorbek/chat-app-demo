@@ -20,7 +20,7 @@ jobs:
       - run: yarn lint
       - run: yarn jest
 
-  build-publish:
+  build:
     runs-on: ubuntu-latest
 
     steps:
