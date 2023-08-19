@@ -48,7 +48,7 @@ describe('File system access api support', () => {
     windowSpy.mockRestore();
   });
 
-  it.only('should correctly call openFilePicker', () => {
+  it('should correctly call openFilePicker', () => {
     void openFilePicker('.xml');
 
     expect(mockShowOpenFilePicker).toBeCalledTimes(1);
@@ -58,7 +58,7 @@ describe('File system access api support', () => {
         types: [
           {
             accept: {
-              'applocation/*': '.xm',
+              'applocation/*': '.xml',
             },
           },
         ],
