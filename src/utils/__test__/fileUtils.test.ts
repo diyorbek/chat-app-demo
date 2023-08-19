@@ -58,7 +58,7 @@ describe('File system access api support', () => {
         types: [
           {
             accept: {
-              'applocation/*': '.xml',
+              'applocation/*': '.xm',
             },
           },
         ],
