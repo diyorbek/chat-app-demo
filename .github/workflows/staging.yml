@@ -31,6 +31,12 @@ jobs:
         with:
           node-version: 20.x
 
+      - name: Create .env
+        run: | 
+          touch .env
+          echo VITE_APP_MODE=staging >> .env
+          echo VITE_STAGING_API_URL=https://staging.example.com >> .env
+
       - name: Build
         run: yarn install && yarn build
 
